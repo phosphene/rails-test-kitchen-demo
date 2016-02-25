@@ -1,0 +1,16 @@
+DEPENDENCIES
+  apt
+  br-rails
+  br-ruby
+  rails-test-kitchen-demo
+    path: .
+    metadata: true
+  yum
+
+GRAPH
+  apt (2.9.2)
+  br-rails (0.1.0)
+    br-ruby (>= 0.0.0)
+  br-ruby (0.4.3)
+  rails-test-kitchen-demo (0.1.0)
+  yum (3.10.0)
