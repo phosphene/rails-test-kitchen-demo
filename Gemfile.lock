@@ -217,6 +217,7 @@ DEPENDENCIES
   berkshelf
   chefspec (~> 4.0)
   kitchen-vagrant
+  serverspec
   test-kitchen
 
 BUNDLED WITH

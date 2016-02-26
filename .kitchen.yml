@@ -3,13 +3,17 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
+  data_path: test/shared
 
 platforms:
   - name: ubuntu-14.04
- 
+    run_list:
+      - role[debian_platform_family]
+
 
 suites:
   - name: default
     run_list:
+      - role[test]
     attributes:
