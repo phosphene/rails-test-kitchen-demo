@@ -1,0 +1,17 @@
+{
+  "name": "debian_platform_family",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Debian Platform Family",
+  "run_list": ["recipe[apt::default]"],
+  "default_attributes": {
+    "ruby": {
+      "dependencies": ["build-essential", "libffi-dev", "libssl-dev", "libreadline-dev"]
+    },
+    "rails": {
+      "default": {
+          "dependencies": ["libsqlite3-dev", "nodejs", "imagemagick", "libmagickwand-dev"]
+      }
+    }
+  }
+}
