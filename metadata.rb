@@ -8,7 +8,11 @@ suggests 'apt'
 suggests 'yum'
 suggests 'br-rails'
 suggests 'br-ruby'
+depends 'postgresql'
+depends  'openssl'
+
 supports 'ubuntu'
+
 ##supports 'debian'
 ##supports 'centos'
 ##supports 'redhat'
