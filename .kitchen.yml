@@ -10,7 +10,13 @@ platforms:
   - name: ubuntu-14.04
     run_list:
       - role[debian_platform_family]
-
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 80, host: 8080}]
+        - ["forwarded_port", {guest: 443, host: 8443, auto_correct: true}]
+        - ["private_network", {ip: "192.168.33.15"}]
+      vagrantfiles:
+        - VagrantfileSSH.rb
 
 suites:
   - name: default
