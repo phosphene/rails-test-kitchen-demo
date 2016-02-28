@@ -3,11 +3,18 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Test Role",
-    "run_list": ["recipe[rails-demo::default]", "recipe[br-ruby::default]", "recipe[br-rails::prepare]", "recipe[br-rails::default]"],
+    "run_list": ["recipe[rails-demo::default]", "recipe[br-ruby::default]", "recipe[br-rails::prepare]", "recipe[br-rails::default]", "recipe[postgresql::server]"],
   "default_attributes": {
       "test": {
           "greeting": "this came from my role"
       },
+
+      "postgresql": {
+          "password": {
+              "postgres": "H3r3I@mJH"
+          }
+      },
+
 
     "ruby": {
       "versions": ["2.3.0"]
