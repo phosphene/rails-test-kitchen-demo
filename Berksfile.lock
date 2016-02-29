@@ -2,6 +2,9 @@ DEPENDENCIES
   apt
   br-rails
   br-ruby
+  passenger-nginx
+    git: https://github.com/ballistiq/chef-passenger-nginx.git
+    revision: cb553815c2acc7f63b21467ebcb7edbc121f965c
   postgresql
   rails-demo
     path: .
@@ -21,6 +24,7 @@ GRAPH
   chef_handler (1.3.0)
   openssl (4.4.0)
     chef-sugar (>= 3.1.1)
+  passenger-nginx (0.9.16)
   postgresql (4.0.0)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)

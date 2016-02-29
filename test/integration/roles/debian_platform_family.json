@@ -6,7 +6,7 @@
   "run_list": ["recipe[apt::default]"],
   "default_attributes": {
     "ruby": {
-      "dependencies": ["build-essential", "libffi-dev", "libssl-dev", "libreadline-dev"]
+        "dependencies": ["build-essential", "libffi-dev", "libssl-dev", "libreadline-dev", "libgmp-dev"]
     },
     "rails": {
       "default": {

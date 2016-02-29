@@ -10,7 +10,7 @@ suggests 'br-rails'
 suggests 'br-ruby'
 depends 'postgresql'
 depends  'openssl'
-
+suggests 'passenger-nginx'
 supports 'ubuntu'
 
 ##supports 'debian'
