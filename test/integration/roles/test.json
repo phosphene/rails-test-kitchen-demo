@@ -1,88 +1,91 @@
 {
-  "name": "test",
-  "chef_type": "role",
-  "json_class": "Chef::Role",
-  "description": "Test Role",
-    "run_list": ["recipe[postgresql::server]", "recipe[passenger-nginx]"],
-  "default_attributes": {
-      "test": {
-          "greeting": "this came from my role"
-      },
-
-      "postgresql": {
-          "password": {
-              "postgres": "H3r3I@mJH"
-          }
-      },
-
-
-      "passenger-nginx": {
-          "ruby_version": "2.3.0",
-          "passenger": {
-              "version": "5.0.25"
-          },
-          "apps": [
-              {
-                  "name": "rails4.x-test-demo",
-                  "server_name": "example.com www.example.com",
-                  "listen": 80,
-                  "root": "/var/www/rails4.x_test_demo",
-                  "ruby_gemset": "rails4.x-test-demo",
-                  "app_env": "staging"
-              }
-          ]
-      },
-
-    "ruby": {
-      "versions": ["2.3.0"]
-    },
-    "rails": {
-      "applications": {
-        "test": {
-          "ruby": {
-            "version": "2.3.0"
-          },
-          "git": {
-            "repository": "https://github.com/phosphene/rails4.x-test-demo"
-          },
-          "config": {
-            "environment":{
-              "values": {
-                "cache_classes": "true",
-                "eager_load": "true",
-                "consider_all_requests_local": "false",
-                "action_controller": {
-                  "perform_caching": "true"
-                },
-                "serve_static_files": "ENV['RAILS_SERVE_STATIC_FILES'].present?",
-                "assets": {
-                  "js_compressor": ":uglifier",
-                  "compile": "false",
-                  "digest": "true"
-                },
-                "log_level": ":debug"
-              }
-            },
-            "database": {
-              "values": {
-                "production": {
-                  "adapter": "sqlite3",
-                  "pool": "5",
-                  "timeout": "5000",
-                  "database": "db/development.sqlite3"
-                }
-              }
-            },
-            "secrets": {
-              "values": {
-                "production": {
-                  "secret_key_base": "c8b92f99b11f01fc05a98245b9f2d32e8b6485a29447"
-                }
-              }
+    "name": "test",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "description": "Test Role",
+    "run_list": ["recipe[rails-demo::default]", "recipe[postgresql::server]", "recipe[passenger-nginx]", "recipe[rails-demo::passenger]", "recipe[rails-demo::postgres]"],
+    "default_attributes": {
+        "postgresql": {
+            "password": {
+                "postgres": "H3r3I@mJH"
             }
-          }
+        },
+
+        "deployment" : {
+            "user" : "deploy",
+            "group" : "www-data"
+        },
+        "passenger-nginx": {
+            "ruby_version": "2.3.0",
+            "passenger": {
+                "version": "5.0.25"
+            },
+
+            "apps": [
+                {
+                    "name": "rails4.x-test-demo",
+                    "server_name": "example.com www.example.com",
+                    "listen": 80,
+                    "root": "/var/www/rails4.x_test_demo",
+                    "ruby_gemset": "rails4.x-test-demo",
+                    "app_env": "staging"
+                }
+            ]
+        },
+
+        "ruby": {
+            "versions": ["2.3.0"]
+        },
+        "rails": {
+            "postgres": {"dbname": "sa_production",
+                       "user": "rails",
+                       "password" : "vagrant"},
+            "applications": {
+                "test": {
+                    "ruby": {
+                        "version": "2.3.0"
+                    },
+                    "git": {
+                        "repository": "https://github.com/phosphene/rails4.x-test-demo"
+                    },
+                    "config": {
+                        "environment":{
+                            "values": {
+                                "cache_classes": "true",
+                                "eager_load": "true",
+                                "consider_all_requests_local": "false",
+                                "action_controller": {
+                                    "perform_caching": "true"
+                                },
+                                "serve_static_files": "ENV['RAILS_SERVE_STATIC_FILES'].present?",
+                                "assets": {
+                                    "js_compressor": ":uglifier",
+                                    "compile": "false",
+                                    "digest": "true"
+                                },
+                                "log_level": ":debug"
+                            }
+                        },
+                        "database": {
+                            "values": {
+                                "production": {
+                                    "adapter": "postgresql",
+                                    "pool": "5",
+                                    "timeout": "5000",
+                                    "database": "production"
+                                }
+                            }
+                        },
+                        "secrets": {
+                            "values": {
+                                "production": {
+                                    "secret_key_base": "c8b92f99b11f01fc05a98245b9f2d32e8b6485a29447"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
